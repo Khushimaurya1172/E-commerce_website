@@ -32,7 +32,7 @@ AromaAura is a beautiful and minimal perfume e-commerce website built using **Dj
 
 ## 🚀 How to Run This Project Locally
 
-### 1. Clone the Repository
+###  Clone the Repository
 ```bash
 git clone https://github.com/yourusername/aromaaura-ecommerce.git
 cd aromaaura-ecommerce
