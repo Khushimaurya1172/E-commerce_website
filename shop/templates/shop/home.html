@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+        background-color: #fff0f6;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+    .card:hover {
+        transform: scale(1.03);
+    }
+    .product-name {
+        color: #d63384;
+        font-weight: bold;
+    }
+    .price {
+        color: #20c997;
+        font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+<div class="container py-5">
+    <h1 class="text-center mb-1" style="color:#bd0661;">AromaAura 🌸</h1>
+<p class="text-center mb-4" style="color:#0d0d0e; font-size: 1.1rem;">
+    Discover timeless perfumes crafted to express elegance, confidence, and beauty.  
+    Let your scent tell your story 💫
+</p>
+
+    <div class="text-end mb-4">
+        <a href="{% url 'cart' %}" class="btn btn-outline-success">🛒 View Cart</a>
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="product-name">{{ product.name }}</h5>
+                    <p class="price">₹{{ product.price }}</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary">View Details</a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No products available 😞</p>
+        {% endfor %}
+    </div>
+</div>
+<p class="text-center mt-2" style="color:#6c757d; font-size: 1.1rem;">
+    Discover timeless perfumes crafted to express elegance, confidence, and beauty.  
+    Let your scent tell your story - by Khushi💕💫
+</p>
+
+</body>
+</html>

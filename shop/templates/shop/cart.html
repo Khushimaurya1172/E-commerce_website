@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #fff0f6;">
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="color:#d63384;">🛒 Your Shopping Cart</h2>
+    {% if cart_items %}
+        <table class="table table-bordered bg-white rounded">
+            <thead class="table-light">
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.product.price }}</td>
+                    <td>₹{{ item.total }}</td>
+                    <td><a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger btn-sm">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4 class="text-end text-success">Grand Total: ₹{{ total }}</h4>
+    {% else %}
+        <p class="text-center">Your cart is empty 😔</p>
+    {% endif %}
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">← Continue Shopping</a>
+    <div class="text-center mt-4 d-grid gap-2 col-6 mx-auto">
+    
+    <a href="{% url 'checkout' %}" class="btn btn-warning">🧾 Proceed to Checkout</a>
+</div>
+
+
+</div>
+</body>
+</html>
